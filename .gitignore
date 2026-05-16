@@ -2,7 +2,8 @@
 node_modules
 /dist
 
-# local env files
+# local env files（含生产密钥与私有域名，勿提交）
+.env
 .env.local
 .env.*.local
 
