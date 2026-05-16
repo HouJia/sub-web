@@ -82,15 +82,14 @@ yarn install
 
 ### 环境配置
 
-构建前复制模板并按注释填写（变量在**构建时**注入，修改后须重新 `yarn build`）：
+变量在**构建时**注入，改 `.env` 后须重新 `yarn build`。**勿提交** `.env`。
 
-```bash
-cp .env.example .env
-```
+| 复制命令 | 场景 | 部署前要改 |
+|----------|------|------------|
+| `cp .env.default .env` | 根路径 + 公共 `api.wcc.best`（与 master 一致） | **不必改**，可直接 build |
+| `cp .env.example .env` | NAS + NPM `/subw/` + 自建 subapi | **必改 2 项**：`VITE_BASE_PATH`、`VITE_SUBCONVERTER_DEFAULT_BACKEND` |
 
-`.env.example` 含全部 `VITE_*` 变量说明（含子路径 `VITE_BASE_PATH`、默认后端 `VITE_SUBCONVERTER_DEFAULT_BACKEND` 等）。**勿提交**本地 `.env`（已 gitignore）；本地文件与模板仅「真实值 vs 占位值」不同。
-
-子路径部署见 `docs/技术迭代-子路径与后端地址.md`。
+文件内用 **【必改】/【可改】/【沿用默认·不必改】** 标注。子路径说明见 `docs/技术迭代-子路径与后端地址.md`。
 
 ## 🚀 使用
 
