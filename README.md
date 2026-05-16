@@ -82,33 +82,15 @@ yarn install
 
 ### 环境配置
 
-创建 `.env` 文件配置后端服务（可选，如需自定义后端地址）：
+构建前复制模板并按注释填写（变量在**构建时**注入，修改后须重新 `yarn build`）：
 
-```env
-# Subconverter 后端地址
-VITE_SUBCONVERTER_DEFAULT_BACKEND=https://api.wcc.best
-
-# 项目与社区链接
-VITE_PROJECT=https://github.com/CareyWang/sub-web
-VITE_BOT_LINK=https://t.me/subconverter_discuss
-
-# 可选：远程配置与说明文档
-VITE_SUBCONVERTER_REMOTE_CONFIG=
-VITE_SUBCONVERTER_DOC_ADVANCED=
-
-# 可选：后端版本标识
-VITE_BACKEND_RELEASE=
-
-# 可选：短链接与配置上传服务
-VITE_MYURLS_API=
-VITE_CONFIG_UPLOAD_API=
-
-# 可选：开启本地存储与缓存 TTL（秒）
-VITE_USE_STORAGE=true
-VITE_CACHE_TTL=86400
+```bash
+cp .env.example .env
 ```
 
-如果部署在子路径（如 `/sub-web/`），通过 `BASE_URL` 指定路由基础路径。
+`.env.example` 含全部 `VITE_*` 变量说明（含子路径 `VITE_BASE_PATH`、默认后端 `VITE_SUBCONVERTER_DEFAULT_BACKEND` 等）。**勿提交**本地 `.env`（已 gitignore）；本地文件与模板仅「真实值 vs 占位值」不同。
+
+子路径部署见 `docs/技术迭代-子路径与后端地址.md`。
 
 ## 🚀 使用
 

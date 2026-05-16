@@ -184,7 +184,7 @@ location / {
 
 ### 6.3 子路径部署（`/subw/`）
 
-1. 复制 `.env.production.example` 为 `.env`，设置 `VITE_BASE_PATH=/subw/` 与 `VITE_SUBCONVERTER_DEFAULT_BACKEND`（HTTPS 反代后的 subconverter 根路径，勿带 `/sub?`）。
+1. 复制 `.env.example` 为 `.env`，按文件内注释填写（至少设置 `VITE_BASE_PATH=/subw/` 与 `VITE_SUBCONVERTER_DEFAULT_BACKEND`，HTTPS 反代后的 subconverter 根路径，勿带 `/sub?`）。
 2. `yarn build` 后执行 `docker build`（`vite.config.js` 通过 `loadEnv` 读取 `VITE_BASE_PATH`）。
 3. 经 NPM 反代时，配置 `location ^~ /subw/` 并设置 `X-Forwarded-Prefix: /subw`（详见 `docs/技术迭代-子路径与后端地址.md`）。
 
