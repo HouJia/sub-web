@@ -4,7 +4,7 @@
       <el-col>
         <el-card>
           <div slot="header">
-            Subscription Converter
+            订阅转换助手
             <svg-icon icon-class="github" style="margin-left: 20px" @click="goToProject" />
 
             <div style="display: inline-block; position:absolute; right: 20px; max-width: 40%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ backendVersion }}</div>
@@ -292,7 +292,7 @@ export default {
     }
   },
   created() {
-    document.title = "Subscription Converter";
+    document.title = "订阅转换助手";
     this.isPC = this.$getOS().isPc;
 
     // 获取 url cache

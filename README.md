@@ -1,279 +1,74 @@
-# sub-web
+# sub-web（HouJia）
 
 ![Vue](https://img.shields.io/badge/Vue-2.6.x-brightgreen.svg)
 ![Node](https://img.shields.io/badge/Node-22.x-green.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)
 
-基于 Vue.js 2.6 与 [tindy2013/subconverter](https://github.com/tindy2013/subconverter) 后端实现的订阅配置自动生成 Web 界面。提供了简洁美观的前端界面，支持多种代理客户端配置生成。
+基于 Vue 2.6 + Vite 的订阅转换 **Web 前端**，对接自建 [HouJia/subconverter](https://github.com/HouJia/subconverter)（**SubConverter-Extended** 基线，`hjsmaster` 分支）。
 
-## ✨ 特性
+> **默认分支**：`hjsmaster`（非 CareyWang 上游 `master`）。  
+> **分支与迭代**：见 [docs/技术方案-分支与上游同步.md](docs/技术方案-分支与上游同步.md)。
 
-- 🎨 基于 Vue 2.6 + Element UI 的现代化界面
-- 📦 模块化架构，易于维护和扩展
-- 🐳 Docker 一键部署
-- 🚀 高性能构建，支持 Gzip 压缩
-- 📱 响应式设计，支持移动端
-- ⚡ 支持自定义转换参数
-- 🔄 实时配置预览和生成
+## 相对 CareyWang/sub-web 的主要改动
 
-## 🚀 快速开始
+| 项 | 说明 |
+|----|------|
+| 构建 | Vue CLI → **Vite 5**；环境变量 `VITE_*` |
+| NAS / NPM | **`VITE_BASE_PATH=/subw/`** 子路径部署 |
+| 后端 | 默认指向自建 **`/subapi`**（`VITE_SUBCONVERTER_DEFAULT_BACKEND`） |
+| 版本页眉 | 请求后端 **`/version.txt`**（适配 Extended，不用 HTML `/version`） |
+| 品牌 | 页眉「订阅转换助手」；GitHub 链到 **HouJia/sub-web** |
+| 部署 | `deploy/nas/deploy-to-qnap.sh` |
 
-### 使用 Docker（推荐）
+## 特性
 
-一键部署，无需配置：
+- 基于 Vue 2.6 + Element UI
+- 模块化架构，支持进阶转换参数
+- Docker + Nginx 一键部署（含 `/subw/`）
+- 响应式布局
+
+## 快速开始
+
+### Docker（NAS 推荐）
 
 ```bash
-docker run -d \
-  -p 58080:80 \
-  --restart always \
-  --name subweb \
-  careywong/subweb:latest
+cp .env.example .env
+# 必改：VITE_BASE_PATH、VITE_SUBCONVERTER_DEFAULT_BACKEND
+./deploy/nas/deploy-to-qnap.sh
 ```
-
-访问 <http://localhost:58080/> 即可使用。
 
 ### 本地开发
 
 ```bash
-# 克隆项目
-git clone https://github.com/CareyWang/sub-web.git
+git clone git@github.com:HouJia/sub-web.git
 cd sub-web
-
-# 安装依赖
+git checkout hjsmaster
+cp .env.default .env    # 或 .env.example（NAS 场景）
 yarn install
-
-# 启动开发服务器
 yarn dev
 ```
 
-访问 <http://localhost:5173/> 查看应用。
+访问 <http://localhost:5173/>（根路径）或按 `.env` 中 `VITE_BASE_PATH` 访问。
 
-## 📦 环境要求
+## 环境变量
 
-- **Node.js**: 22.x
-- **Yarn**: 1.22+
-- **Docker**: 20.10+ （可选，用于容器化部署）
+| 变量 | 说明 |
+|------|------|
+| `VITE_BASE_PATH` | 部署子路径，NAS 为 `/subw/` |
+| `VITE_SUBCONVERTER_DEFAULT_BACKEND` | subconverter API 根（无 `/sub?`） |
+| `VITE_PROJECT` | 页眉 GitHub 链接（默认 HouJia/sub-web） |
+| `VITE_BACKEND_RELEASE` | 「前往项目仓库」链接（默认 HouJia/subconverter） |
 
-### 验证安装
+完整说明见 `.env.example`、`.env.default`。
 
-```bash
-# 检查 Node.js 版本
-node -v
-# 应输出: v22.x.x
+## 上游与许可
 
-# 检查 Yarn 版本
-yarn -v
-# 应输出: 1.22.x
-```
+- UI 原型 fork 自 [CareyWang/sub-web](https://github.com/CareyWang/sub-web)（MIT）
+- 后端配套 [HouJia/subconverter](https://github.com/HouJia/subconverter)（GPL-3.0）
 
-## 🛠️ 安装
+## 相关文档
 
-### 使用 Yarn（推荐）
-
-```bash
-# 克隆项目
-git clone https://github.com/CareyWang/sub-web.git
-cd sub-web
-
-# 安装依赖
-yarn install
-```
-
-### 环境配置
-
-变量在**构建时**注入，改 `.env` 后须重新 `yarn build`。**勿提交** `.env`。
-
-| 复制命令 | 场景 | 部署前要改 |
-|----------|------|------------|
-| `cp .env.default .env` | 根路径 + 公共 `api.wcc.best`（与 master 一致） | **不必改**，可直接 build |
-| `cp .env.example .env` | NAS + NPM `/subw/` + 自建 subapi | **必改 2 项**：`VITE_BASE_PATH`、`VITE_SUBCONVERTER_DEFAULT_BACKEND` |
-
-文件内用 **【必改】/【可改】/【沿用默认·不必改】** 标注。子路径说明见 `docs/技术迭代-子路径与后端地址.md`。
-
-## 🚀 使用
-
-### 开发环境
-
-```bash
-# 启动开发服务器
-yarn dev
-```
-
-访问 <http://localhost:5173/> 查看应用。
-
-### 生产构建
-
-```bash
-# 构建生产版本
-yarn build
-```
-
-构建完成后，`dist` 目录包含所有生产文件。
-
-
-## 🐳 Docker 部署
-
-### 本地构建
-
-如需修改代码并自定义构建：
-
-```bash
-# 构建镜像
-docker build -t subweb-local:latest .
-
-# 运行容器
-docker run -d \
-  -p 58080:80 \
-  --restart always \
-  --name subweb \
-  subweb-local:latest
-```
-
-### Docker Compose 部署
-
-使用 Docker Compose 一键部署完整服务栈（包含 MyUrls 短链接服务）：
-
-```bash
-# 进入 services 目录
-cd services
-
-# 编辑 .env 文件，修改端口和域名配置
-# 默认配置：SUBWEB_PORT=58080, MYURLS_PORT=8002
-vim .env
-
-# 启动所有服务
-docker-compose up -d
-```
-
-## 🌐 部署
-
-### Nginx 配置示例
-
-配置 Nginx 作为反向代理和静态文件服务器：
-
-```nginx
-server {
-    listen 80;
-    server_name your-domain.com;
-
-    # HTTPS 重定向（可选）
-    # return 301 https://$server_name$request_uri;
-
-    root /var/www/sub-web/dist;
-    index index.html index.htm;
-
-    # SPA 路由支持
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-
-    # Gzip 压缩
-    gzip on;
-    gzip_min_length 1k;
-    gzip_buffers 4 16k;
-    gzip_http_version 1.0;
-    gzip_comp_level 6;
-    gzip_types
-        text/plain
-        text/css
-        text/javascript
-        application/json
-        application/javascript
-        application/x-javascript
-        application/xml
-        text/xml;
-    gzip_vary on;
-
-    # 静态资源缓存
-    location ~* \.(css|js|png|jpg|jpeg|gif|gz|svg|mp4|ogg|ogv|webm|htc|xml|woff|woff2|ttf|eot)$ {
-        access_log off;
-        add_header Cache-Control "public,max-age=86400";
-        add_header Vary Accept-Encoding;
-    }
-}
-
-# HTTPS 配置示例（可选）
-server {
-    listen 443 ssl http2;
-    server_name your-domain.com;
-
-    ssl_certificate /path/to/your/cert.pem;
-    ssl_certificate_key /path/to/your/key.pem;
-
-    # SSL 安全配置
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384;
-    ssl_prefer_server_ciphers off;
-
-    root /var/www/sub-web/dist;
-    index index.html index.htm;
-
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-}
-```
-
-## 🔗 相关项目
-
-- **[tindy2013/subconverter](https://github.com/tindy2013/subconverter)** - 强大的订阅转换后端
-- **[CareyWang/MyUrls](https://github.com/CareyWang/MyUrls)** - 短链接服务，可与 sub-web 配合使用
-
-## 🤝 贡献指南
-
-我们欢迎所有形式的贡献！
-
-### 贡献方式
-
-1. **Fork** 本仓库
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 创建 **Pull Request**
-
-### 开发指南
-
-- 遵循 ESLint 代码规范
-- 更新相关文档
-- 确保所有 CI 检查通过
-
-### 问题反馈
-
-如果您遇到任何问题或有改进建议，请：
-
-1. 查看 [Issues](https://github.com/CareyWang/sub-web/issues) 是否已有类似问题
-2. 创建新的 Issue 并提供详细信息
-3. 使用合适的标签标记问题类型
-
-## 📄 许可证
-
-本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
-
-Copyright © 2020-2025 CareyWong
-
-## 🙏 致谢
-
-感谢所有为这个项目做出贡献的开发者和用户！
-
-特别感谢：
-- [tindy2013/subconverter](https://github.com/tindy2013/subconverter) - 提供强大的转换后端
-- Vue.js 和 Element UI 团队 - 优秀的前端框架和组件库
-
-## 📈 项目统计
-
-<a href="https://www.star-history.com/#CareyWang/sub-web&type=date&legend=top-left">
-
- <picture>
-
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=CareyWang/sub-web&type=date&theme=dark&legend=top-left" />
-
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=CareyWang/sub-web&type=date&legend=top-left" />
-
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=CareyWang/sub-web&type=date&legend=top-left" />
-
- </picture>
-
-</a>
-
-<br>
+- [技术方案-分支与上游同步.md](docs/技术方案-分支与上游同步.md)
+- [技术迭代-子路径与后端地址.md](docs/技术迭代-子路径与后端地址.md)
+- subconverter NAS 部署：`HouJia/subconverter` → `docs/技术迭代-NAS部署与NPM暴露.md`
