@@ -5,7 +5,7 @@
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)
 
-基于 Vue 2.6 + Vite 的订阅转换 **Web 前端**，对接自建 [HouJia/subconverter](https://github.com/HouJia/subconverter)（**SubConverter-Extended** 基线，`hjsmaster` 分支）。
+基于 Vue 2.6 + Vite 的订阅转换 **Web 前端**，对接自建 [HouJia/SubConverter-Extended](https://github.com/HouJia/SubConverter-Extended)（**SubConverter-Extended** 基线，`hjsmaster` 分支）。
 
 > **默认分支**：`hjsmaster`（非 CareyWang 上游 `master`）。  
 > **分支与迭代**：见 [docs/技术方案-分支与上游同步.md](docs/技术方案-分支与上游同步.md)。
