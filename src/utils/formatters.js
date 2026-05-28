@@ -22,9 +22,17 @@ export const formatErrorMessage = (error) => {
  * @returns {string} 清理后的版本信息
  */
 export const formatVersion = (version) => {
+  if (!version || typeof version !== "string") {
+    return "";
+  }
+  if (version.trimStart().startsWith("<!DOCTYPE") || version.trimStart().startsWith("<html")) {
+    return "";
+  }
   let cleaned = version.replace(/backend\n$/gm, "");
-  cleaned = cleaned.replace("subconverter", "");
-  return cleaned;
+  cleaned = cleaned.replace(/^SubConverter-Extended\s+/i, "");
+  cleaned = cleaned.replace(/^subconverter\s+/i, "");
+  cleaned = cleaned.replace(/subconverter/gi, "");
+  return cleaned.trim();
 };
 
 /**

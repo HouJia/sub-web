@@ -11,16 +11,16 @@ export class BackendService {
    * @returns {Promise<string>} 版本信息
    */
   static async getBackendVersion($axios) {
-    // 提取版本 API 路径
-    const versionApiUrl = CONSTANTS.DEFAULT_BACKEND.substring(0, CONSTANTS.DEFAULT_BACKEND.length - 5) + "/version";
+    const backendRoot = CONSTANTS.DEFAULT_BACKEND.replace(/\/sub\?$/, "");
+    const versionApiUrl = backendRoot + "/version.txt";
 
     try {
-      const response = await $axios.get(versionApiUrl);
-      // 清理版本信息格式
-      let version = formatVersion(response.data);
-      return version;
+      const response = await $axios.get(versionApiUrl, {
+        responseType: "text",
+        transformResponse: [(data) => data],
+      });
+      return formatVersion(response.data);
     } catch (error) {
-      // 静默处理，不显示错误信息，避免干扰用户体验
       return "";
     }
   }

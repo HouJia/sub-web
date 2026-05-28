@@ -7,7 +7,7 @@
             Subscription Converter
             <svg-icon icon-class="github" style="margin-left: 20px" @click="goToProject" />
 
-            <div style="display: inline-block; position:absolute; right: 20px">{{ backendVersion }}</div>
+            <div style="display: inline-block; position:absolute; right: 20px; max-width: 40%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">{{ backendVersion }}</div>
           </div>
           <el-container>
             <el-form :model="form" label-width="140px" label-position="left" style="width: 100%">
