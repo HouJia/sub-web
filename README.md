@@ -58,17 +58,17 @@ yarn dev
 | `VITE_BASE_PATH` | 部署子路径，NAS 为 `/subw/` |
 | `VITE_SUBCONVERTER_DEFAULT_BACKEND` | subconverter API 根（无 `/sub?`） |
 | `VITE_PROJECT` | 页眉 GitHub 链接（默认 HouJia/sub-web） |
-| `VITE_BACKEND_RELEASE` | 「前往项目仓库」链接（默认 HouJia/subconverter） |
+| `VITE_BACKEND_RELEASE` | 「前往项目仓库」链接（默认 HouJia/SubConverter-Extended） |
 
 完整说明见 `.env.example`、`.env.default`。
 
 ## 上游与许可
 
 - UI 原型 fork 自 [CareyWang/sub-web](https://github.com/CareyWang/sub-web)（MIT）
-- 后端配套 [HouJia/subconverter](https://github.com/HouJia/subconverter)（GPL-3.0）
+- 后端配套 [HouJia/SubConverter-Extended](https://github.com/HouJia/SubConverter-Extended)（GPL-3.0）
 
 ## 相关文档
 
 - [技术方案-分支与上游同步.md](docs/技术方案-分支与上游同步.md)
 - [技术迭代-子路径与后端地址.md](docs/技术迭代-子路径与后端地址.md)
-- subconverter NAS 部署：`HouJia/subconverter` → `docs/技术迭代-NAS部署与NPM暴露.md`
+- subconverter NAS 部署：`HouJia/SubConverter-Extended` → `docs/技术迭代-NAS部署与NPM暴露.md`
