@@ -1,0 +1,11 @@
+---
+description: Docker 与部署相关任务优先参考项目内部署指南
+alwaysApply: true
+---
+
+# Docker 部署约定
+
+- 当任务涉及 `Docker`、容器化、镜像构建、`docker compose`、部署、上线、`Nginx` 容器托管时，优先参考项目根目录的 `DOCKER-DEPLOYMENT.md`。
+- 若 `DOCKER-DEPLOYMENT.md` 中已有明确步骤、命令或边界说明，先遵循该文档，再结合当前代码与配置核对。
+- 若代码、配置与 `DOCKER-DEPLOYMENT.md` 不一致，应先指出差异，再更新代码或文档，避免延续过时说明。
+- 不要把完整部署指南重复写入规则文件；规则只负责引导到项目内文档。
