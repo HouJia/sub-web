@@ -1,6 +1,16 @@
 // 远程配置选项
 export const REMOTE_CONFIGS = [
   {
+    label: "hjsrules",
+    options: [
+      {
+        label: "config.local.ini",
+        value:
+          "https://gist.githubusercontent.com/HouJia/54a5b224ac542a03beebf6701053269f/raw/235ea8643a8d4a4d2c140b6a03696fc6ca0d0a73/config.local.ini"
+      }
+    ]
+  },
+  {
     label: "universal",
     options: [
       {

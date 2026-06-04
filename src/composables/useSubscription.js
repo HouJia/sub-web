@@ -95,6 +95,10 @@ export function useSubscription() {
       params += "&filename=" + encodeURIComponent(form.filename);
     }
 
+    if (form.subscriptionFetchUa) {
+      params += "&ua=" + encodeURIComponent(form.subscriptionFetchUa);
+    }
+
     // 节点类型
     if (form.appendType) {
       params += "&append_type=" + form.appendType.toString();

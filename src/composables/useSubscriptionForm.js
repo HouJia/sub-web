@@ -27,6 +27,8 @@ export function useSubscriptionForm() {
       appendType: false,
       insert: false, // 是否插入默认订阅的节点，对应配置项 insert_url
       new_name: true, // 是否使用 Clash 新字段
+      // 拉取远程订阅的 UA；空=后端多 UA 轮换
+      subscriptionFetchUa: "",
 
       // tpl 定制功能
       tpl: {

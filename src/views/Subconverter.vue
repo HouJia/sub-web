@@ -41,6 +41,13 @@
                     <el-button slot="append" @click="gotoRemoteConfig" icon="el-icon-link">配置示例</el-button>
                   </el-select>
                 </el-form-item>
+                <el-form-item label="订阅拉取 UA:">
+                  <el-select v-model="form.subscriptionFetchUa" allow-create filterable clearable
+                    placeholder="默认自动轮换" style="width: 100%">
+                    <el-option v-for="item in options.subscriptionFetchUa" :key="item.value || 'auto'"
+                      :label="item.label" :value="item.value"></el-option>
+                  </el-select>
+                </el-form-item>
                 <el-form-item label="Include:">
                   <el-input v-model="form.includeRemarks" placeholder="节点名包含的关键字，支持正则" />
                 </el-form-item>
@@ -63,7 +70,7 @@
                 <el-form-item label-width="0px">
                   <el-row type="flex">
                     <el-col>
-                      <el-checkbox v-model="form.nodeList" label="输出为 Node List" border></el-checkbox>
+                      <el-checkbox v-model="form.nodeList" label="平铺节点（list=true，保留模板规则）" border></el-checkbox>
                     </el-col>
                     <el-popover placement="bottom" v-model="form.extraset">
                       <el-row>
@@ -209,6 +216,7 @@
 import { CONSTANTS } from '@/config/constants';
 import { CLIENT_TYPES } from '@/config/client-types';
 import { REMOTE_CONFIGS } from '@/config/remote-configs';
+import { SUBSCRIPTION_FETCH_UA_OPTIONS } from '@/config/subscription-fetch-ua';
 
 // 导入Composables
 import { useSubscriptionForm, addCustomParam, saveSubUrl as saveSubscriptionUrl } from '@/composables/useSubscriptionForm';
@@ -241,7 +249,8 @@ export default {
       options: {
         clientTypes: CLIENT_TYPES,
         backendOptions: CONSTANTS.BACKEND_SUGGESTIONS,
-        remoteConfig: REMOTE_CONFIGS
+        remoteConfig: REMOTE_CONFIGS,
+        subscriptionFetchUa: SUBSCRIPTION_FETCH_UA_OPTIONS
       },
 
       // 状态

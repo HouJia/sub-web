@@ -91,6 +91,7 @@ export function useUrlParser() {
       form.tpl.surge.doh = params.get("surge.doh") === "true";
       form.tpl.clash.doh = params.get("clash.doh") === "true";
       form.new_name = params.get("new_name") === "true";
+      form.subscriptionFetchUa = params.get("ua") || "";
 
       // Filter custom parameters
       customParams.splice(0, customParams.length);
