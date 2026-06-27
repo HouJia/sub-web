@@ -18,7 +18,7 @@
 | NAS / NPM | **`VITE_BASE_PATH=/subw/`** 子路径部署 |
 | 后端 | 默认指向自建 **`/subapi`**（`VITE_SUBCONVERTER_DEFAULT_BACKEND`） |
 | 版本页眉 | 请求后端 **`/version.txt`**（适配 Extended，不用 HTML `/version`） |
-| 远程配置 | 下拉首位 **`hjsrules` → config.local.ini`**（HouJia Gist） |
+| 远程配置 | 下拉 **`hjsrules`**：默认 **`houjia.local-template.ini`**；`config.local.ini（历史）` 保留可选 |
 | 平铺节点 | 进阶模式勾选 **`list=true`**（保留模板规则，对应后端平铺 `proxies`） |
 | 订阅拉取 UA | 可选；留空则后端 **UA 自动轮换**，或固定 `ClashMeta` 等 |
 | 品牌 | 页眉「订阅转换助手」；GitHub 链到 **HouJia/sub-web** |
