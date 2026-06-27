@@ -513,10 +513,23 @@ export default {
 };
 </script>
 
-<!-- hjsrules：仅首个分组标题略突出，结构完全沿用 Element 默认 -->
+<!-- hjsrules：淡底 + 黑色标题字效，结构不变 -->
 <style>
+.remote-config-dropdown .el-select-group__wrap:first-child {
+  margin: 2px 0 4px;
+  padding-bottom: 2px;
+  background: #f7f8fa;
+  border-radius: 4px;
+}
 .remote-config-dropdown .el-select-group__wrap:first-child > .el-select-group__title {
-  color: #b45309;
-  font-weight: 600;
+  color: #303133;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+.remote-config-dropdown .el-select-group__wrap:first-child .el-select-group {
+  background: transparent;
 }
 </style>
