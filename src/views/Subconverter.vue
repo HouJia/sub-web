@@ -33,8 +33,9 @@
                   </el-autocomplete>
                 </el-form-item>
                 <el-form-item label="远程配置:">
-                  <el-select v-model="form.remoteConfig" allow-create filterable placeholder="请选择" style="width: 100%">
-                    <el-option-group v-for="group in options.remoteConfig" :key="group.label" :label="group.label">
+                  <el-select v-model="form.remoteConfig" allow-create filterable placeholder="请选择" style="width: 100%" class="remote-config-select">
+                    <el-option-group v-for="group in options.remoteConfig" :key="group.label">
+                      <span slot="label" :class="group.label === 'hjsrules' ? 'hjsrules-group-label' : ''">{{ group.label }}</span>
                       <el-option v-for="item in group.options" :key="item.value" :label="item.label"
                         :value="item.value"></el-option>
                     </el-option-group>
@@ -215,7 +216,7 @@
 // 导入配置
 import { CONSTANTS } from '@/config/constants';
 import { CLIENT_TYPES } from '@/config/client-types';
-import { REMOTE_CONFIGS } from '@/config/remote-configs';
+import { REMOTE_CONFIGS, HOUJIA_DEFAULT_REMOTE_CONFIG } from '@/config/remote-configs';
 import { SUBSCRIPTION_FETCH_UA_OPTIONS } from '@/config/subscription-fetch-ua';
 
 // 导入Composables
@@ -314,6 +315,13 @@ export default {
   },
   mounted() {
     this.form.clientType = CONSTANTS.DEFAULT_CLIENT_TYPE;
+    const legacyIni = "config.local.ini";
+    if (
+      !this.form.remoteConfig ||
+      this.form.remoteConfig.includes(legacyIni)
+    ) {
+      this.form.remoteConfig = HOUJIA_DEFAULT_REMOTE_CONFIG;
+    }
     this.getBackendVersion();
     
     // 延迟加载隐私提示，避免阻塞页面初始化
@@ -504,3 +512,18 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.remote-config-select ::v-deep .hjsrules-group-label {
+  display: inline-block;
+  padding: 2px 10px;
+  margin-left: -4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #e8f0fe 0%, #fef7e0 100%);
+  color: #b06000;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  border: 1px solid #f9ab00;
+}
+</style>

@@ -1,12 +1,19 @@
 // 远程配置选项
+export const HOUJIA_DEFAULT_REMOTE_CONFIG =
+  "https://gist.githubusercontent.com/HouJia/54a5b224ac542a03beebf6701053269f/raw/houjia.local-template.ini";
+
 export const REMOTE_CONFIGS = [
   {
     label: "hjsrules",
     options: [
       {
-        label: "config.local.ini",
+        label: "houjia.local-template.ini",
+        value: HOUJIA_DEFAULT_REMOTE_CONFIG
+      },
+      {
+        label: "config.local.ini（历史，不再更新）",
         value:
-          "https://gist.githubusercontent.com/HouJia/54a5b224ac542a03beebf6701053269f/raw/235ea8643a8d4a4d2c140b6a03696fc6ca0d0a73/config.local.ini"
+          "https://gist.githubusercontent.com/HouJia/54a5b224ac542a03beebf6701053269f/raw/config.local.ini"
       }
     ]
   },

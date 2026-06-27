@@ -1,4 +1,5 @@
 import { setLocalStorageItem } from '@/utils/storage';
+import { HOUJIA_DEFAULT_REMOTE_CONFIG } from '@/config/remote-configs';
 
 /**
  * 订阅表单状态管理 - 为Vue 2 Options API设计
@@ -11,7 +12,7 @@ export function useSubscriptionForm() {
       sourceSubUrl: "",
       clientType: "",
       customBackend: "",
-      remoteConfig: "",
+      remoteConfig: HOUJIA_DEFAULT_REMOTE_CONFIG,
       excludeRemarks: "",
       includeRemarks: "",
       filename: "",
