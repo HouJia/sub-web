@@ -36,6 +36,9 @@
                   <el-select v-model="form.remoteConfig" allow-create filterable placeholder="请选择" style="width: 100%"
                     popper-class="remote-config-dropdown">
                     <el-option-group v-for="group in options.remoteConfig" :key="group.label" :label="group.label">
+                      <template v-if="group.label === 'hjsrules'" slot="label">
+                        <span class="hjsrules-group-label">hjsrules · HouJia 模板</span>
+                      </template>
                       <el-option v-for="item in group.options" :key="item.value" :label="item.label"
                         :value="item.value"></el-option>
                     </el-option-group>
@@ -513,26 +516,39 @@ export default {
 };
 </script>
 
-<!-- 下拉层挂载在 body，须用 popper-class + 非 scoped 样式 -->
+<!-- 下拉层挂载 body；仅首个 el-select-group__wrap（hjsrules）加卡片样式 -->
 <style>
-.remote-config-dropdown .el-select-group:first-child {
-  margin: 8px 10px 10px;
-  padding: 6px 8px 4px;
-  border: 2px solid #f9ab00;
+.remote-config-dropdown .el-select-group__wrap:first-child {
+  margin: 6px 8px 10px;
+  border: 1px solid #d97706;
   border-radius: 8px;
-  background: linear-gradient(180deg, #fffbeb 0%, #fff 100%);
-  box-shadow: 0 4px 14px rgba(249, 171, 0, 0.35);
+  background: #fffbeb;
+  box-shadow: 0 2px 10px rgba(217, 119, 6, 0.15);
+  overflow: hidden;
 }
-.remote-config-dropdown .el-select-group:first-child .el-select-group__title {
-  padding: 4px 6px 8px;
-  color: #b45309;
+.remote-config-dropdown .el-select-group__wrap:first-child .el-select-group__title {
+  padding: 0;
+  margin: 0;
+  height: auto;
+  line-height: normal;
+  list-style: none;
+  border-bottom: 1px solid #fcd34d;
+  background: linear-gradient(180deg, #fef3c7 0%, #fde68a 100%);
+}
+.remote-config-dropdown .el-select-group__wrap:first-child .hjsrules-group-label {
+  display: block;
+  padding: 8px 12px;
+  font-size: 12px;
   font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.06em;
-  border-bottom: 1px dashed #f9ab00;
-  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: #92400e;
 }
-.remote-config-dropdown .el-select-group:first-child .el-select-dropdown__item {
-  padding-left: 12px;
+.remote-config-dropdown .el-select-group__wrap:first-child .el-select-group {
+  padding: 4px 0 6px;
+  background: #fff;
+}
+.remote-config-dropdown .el-select-group__wrap:first-child .el-select-dropdown__item {
+  padding-left: 14px;
+  padding-right: 14px;
 }
 </style>
