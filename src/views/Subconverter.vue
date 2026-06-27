@@ -513,24 +513,13 @@ export default {
 };
 </script>
 
-<!-- hjsrules：左边线区分 + 黑色标题；选项保持白底/浅灰 hover -->
+<!-- hjsrules：仅标题字效，不改动 wrap 间距/分割线（与 Element 默认一致） -->
 <style>
-.remote-config-dropdown .el-select-group__wrap:first-child {
-  margin: 2px 0 6px;
-  padding: 2px 0 2px 10px;
-  border-left: 3px solid #dcdfe6;
-  background: transparent;
-  border-radius: 0;
-}
 .remote-config-dropdown .el-select-group__wrap:first-child > .el-select-group__title {
   color: #303133;
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
-}
-.remote-config-dropdown .el-select-group__wrap:first-child .el-select-group {
-  background: transparent;
 }
 </style>
