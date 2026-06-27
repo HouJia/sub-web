@@ -36,9 +36,6 @@
                   <el-select v-model="form.remoteConfig" allow-create filterable placeholder="请选择" style="width: 100%"
                     popper-class="remote-config-dropdown">
                     <el-option-group v-for="group in options.remoteConfig" :key="group.label" :label="group.label">
-                      <template v-if="group.label === 'hjsrules'" slot="label">
-                        <span class="hjsrules-group-label">hjsrules</span>
-                      </template>
                       <el-option v-for="item in group.options" :key="item.value" :label="item.label"
                         :value="item.value"></el-option>
                     </el-option-group>
@@ -516,40 +513,10 @@ export default {
 };
 </script>
 
-<!-- 下拉层挂载 body；hjsrules 仅强化分组标题，与 Element 默认列表一体 -->
+<!-- hjsrules：仅首个分组标题略突出，结构完全沿用 Element 默认 -->
 <style>
-.remote-config-dropdown .el-select-group__wrap:first-child {
-  margin: 0;
-  padding-bottom: 6px;
-  border: none;
-  box-shadow: none;
-  background: transparent;
-  border-bottom: 1px solid #ebeef5;
-}
-.remote-config-dropdown .el-select-group__wrap:first-child .el-select-group__title {
-  padding: 0;
-  margin: 0;
-  height: auto;
-  line-height: normal;
-  list-style: none;
-  background: transparent;
-  border: none;
-}
-.remote-config-dropdown .el-select-group__wrap:first-child .hjsrules-group-label {
-  display: block;
-  padding: 7px 12px 7px 10px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+.remote-config-dropdown .el-select-group__wrap:first-child > .el-select-group__title {
   color: #b45309;
-  background: linear-gradient(90deg, rgba(254, 243, 199, 0.45) 0%, rgba(254, 243, 199, 0) 85%);
-  border-left: 3px solid #f59e0b;
-}
-.remote-config-dropdown .el-select-group__wrap:first-child .el-select-group {
-  padding: 0;
-  background: transparent;
-}
-.remote-config-dropdown .el-select-group__wrap:first-child .el-select-dropdown__item {
-  padding-left: 20px;
+  font-weight: 600;
 }
 </style>
