@@ -33,7 +33,8 @@
                   </el-autocomplete>
                 </el-form-item>
                 <el-form-item label="远程配置:">
-                  <el-select v-model="form.remoteConfig" allow-create filterable placeholder="请选择" style="width: 100%" class="remote-config-select">
+                  <el-select v-model="form.remoteConfig" allow-create filterable placeholder="请选择" style="width: 100%"
+                    popper-class="remote-config-dropdown">
                     <el-option-group v-for="group in options.remoteConfig" :key="group.label" :label="group.label">
                       <el-option v-for="item in group.options" :key="item.value" :label="item.label"
                         :value="item.value"></el-option>
@@ -512,19 +513,26 @@ export default {
 };
 </script>
 
-<style scoped>
-/* 仅突出 hjsrules 分组（首个分组），不影响 universal/customized 等标题 */
-.remote-config-select ::v-deep .el-select-group:first-child .el-select-group__title {
-  display: block;
-  margin: 4px 0 6px;
-  padding: 6px 10px;
-  border-radius: 6px;
-  background: var(--card, #fff);
-  color: #b06000;
+<!-- 下拉层挂载在 body，须用 popper-class + 非 scoped 样式 -->
+<style>
+.remote-config-dropdown .el-select-group:first-child {
+  margin: 8px 10px 10px;
+  padding: 6px 8px 4px;
+  border: 2px solid #f9ab00;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #fffbeb 0%, #fff 100%);
+  box-shadow: 0 4px 14px rgba(249, 171, 0, 0.35);
+}
+.remote-config-dropdown .el-select-group:first-child .el-select-group__title {
+  padding: 4px 6px 8px;
+  color: #b45309;
   font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.04em;
-  border: 1px solid #f9ab00;
-  box-shadow: 0 2px 8px rgba(249, 171, 0, 0.22);
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  border-bottom: 1px dashed #f9ab00;
+  line-height: 1.4;
+}
+.remote-config-dropdown .el-select-group:first-child .el-select-dropdown__item {
+  padding-left: 12px;
 }
 </style>
