@@ -523,7 +523,7 @@ export default {
   text-transform: none;
 }
 .remote-config-dropdown .el-select-dropdown__item.selected {
-  color: #303133;
+  color: #303133 !important;
   font-weight: 700;
   font-size: 15px;
 }
