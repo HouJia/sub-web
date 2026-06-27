@@ -37,7 +37,7 @@
                     popper-class="remote-config-dropdown">
                     <el-option-group v-for="group in options.remoteConfig" :key="group.label" :label="group.label">
                       <template v-if="group.label === 'hjsrules'" slot="label">
-                        <span class="hjsrules-group-label">hjsrules · HouJia 模板</span>
+                        <span class="hjsrules-group-label">hjsrules</span>
                       </template>
                       <el-option v-for="item in group.options" :key="item.value" :label="item.label"
                         :value="item.value"></el-option>
@@ -516,15 +516,15 @@ export default {
 };
 </script>
 
-<!-- 下拉层挂载 body；仅首个 el-select-group__wrap（hjsrules）加卡片样式 -->
+<!-- 下拉层挂载 body；hjsrules 仅强化分组标题，与 Element 默认列表一体 -->
 <style>
 .remote-config-dropdown .el-select-group__wrap:first-child {
-  margin: 6px 8px 10px;
-  border: 1px solid #d97706;
-  border-radius: 8px;
-  background: #fffbeb;
-  box-shadow: 0 2px 10px rgba(217, 119, 6, 0.15);
-  overflow: hidden;
+  margin: 0;
+  padding-bottom: 6px;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  border-bottom: 1px solid #ebeef5;
 }
 .remote-config-dropdown .el-select-group__wrap:first-child .el-select-group__title {
   padding: 0;
@@ -532,23 +532,24 @@ export default {
   height: auto;
   line-height: normal;
   list-style: none;
-  border-bottom: 1px solid #fcd34d;
-  background: linear-gradient(180deg, #fef3c7 0%, #fde68a 100%);
+  background: transparent;
+  border: none;
 }
 .remote-config-dropdown .el-select-group__wrap:first-child .hjsrules-group-label {
   display: block;
-  padding: 8px 12px;
+  padding: 7px 12px 7px 10px;
   font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: #92400e;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #b45309;
+  background: linear-gradient(90deg, rgba(254, 243, 199, 0.45) 0%, rgba(254, 243, 199, 0) 85%);
+  border-left: 3px solid #f59e0b;
 }
 .remote-config-dropdown .el-select-group__wrap:first-child .el-select-group {
-  padding: 4px 0 6px;
-  background: #fff;
+  padding: 0;
+  background: transparent;
 }
 .remote-config-dropdown .el-select-group__wrap:first-child .el-select-dropdown__item {
-  padding-left: 14px;
-  padding-right: 14px;
+  padding-left: 20px;
 }
 </style>
