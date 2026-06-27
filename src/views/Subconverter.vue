@@ -513,16 +513,16 @@ export default {
 };
 </script>
 
-<!-- hjsrules：标题蓝色小写；选中项黑粗放大；历史项淡化 -->
+<!-- 远程配置下拉：选中项全局黑粗放大；hjsrules 标题仅蓝+小写+字号加大；历史项淡化 -->
 <style>
 .remote-config-dropdown .el-select-group__wrap:first-child > .el-select-group__title {
   color: #409eff;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   letter-spacing: normal;
   text-transform: none;
 }
-.remote-config-dropdown .el-select-group__wrap:first-child .el-select-dropdown__item.selected {
+.remote-config-dropdown .el-select-dropdown__item.selected {
   color: #303133;
   font-weight: 700;
   font-size: 15px;
@@ -532,5 +532,8 @@ export default {
 }
 .remote-config-dropdown .el-select-dropdown__item.remote-config-legacy:hover {
   color: #909399;
+}
+.remote-config-dropdown .el-select-dropdown__item.remote-config-legacy.selected {
+  color: #303133;
 }
 </style>
