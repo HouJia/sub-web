@@ -513,13 +513,14 @@ export default {
 };
 </script>
 
-<!-- hjsrules：淡底 + 黑色标题字效，结构不变 -->
+<!-- hjsrules：左边线区分 + 黑色标题；选项保持白底/浅灰 hover -->
 <style>
 .remote-config-dropdown .el-select-group__wrap:first-child {
-  margin: 2px 0 4px;
-  padding-bottom: 2px;
-  background: #f7f8fa;
-  border-radius: 4px;
+  margin: 2px 0 6px;
+  padding: 2px 0 2px 10px;
+  border-left: 3px solid #dcdfe6;
+  background: transparent;
+  border-radius: 0;
 }
 .remote-config-dropdown .el-select-group__wrap:first-child > .el-select-group__title {
   color: #303133;
