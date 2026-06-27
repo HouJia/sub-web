@@ -37,7 +37,7 @@
                     popper-class="remote-config-dropdown">
                     <el-option-group v-for="group in options.remoteConfig" :key="group.label" :label="group.label">
                       <el-option v-for="item in group.options" :key="item.value" :label="item.label"
-                        :value="item.value"></el-option>
+                        :value="item.value" :class="item.legacy ? 'remote-config-legacy' : ''"></el-option>
                     </el-option-group>
                     <el-button slot="append" @click="gotoRemoteConfig" icon="el-icon-link">配置示例</el-button>
                   </el-select>
@@ -513,13 +513,24 @@ export default {
 };
 </script>
 
-<!-- hjsrules：仅标题字效，不改动 wrap 间距/分割线（与 Element 默认一致） -->
+<!-- hjsrules：标题蓝色小写；选中项黑粗放大；历史项淡化 -->
 <style>
 .remote-config-dropdown .el-select-group__wrap:first-child > .el-select-group__title {
-  color: #303133;
+  color: #409eff;
   font-weight: 700;
   font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: normal;
+  text-transform: none;
+}
+.remote-config-dropdown .el-select-group__wrap:first-child .el-select-dropdown__item.selected {
+  color: #303133;
+  font-weight: 700;
+  font-size: 15px;
+}
+.remote-config-dropdown .el-select-dropdown__item.remote-config-legacy {
+  color: #c0c4cc;
+}
+.remote-config-dropdown .el-select-dropdown__item.remote-config-legacy:hover {
+  color: #909399;
 }
 </style>

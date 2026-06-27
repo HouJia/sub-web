@@ -13,7 +13,8 @@ export const REMOTE_CONFIGS = [
       {
         label: "config.local.ini（历史，不再更新）",
         value:
-          "https://gist.githubusercontent.com/HouJia/54a5b224ac542a03beebf6701053269f/raw/config.local.ini"
+          "https://gist.githubusercontent.com/HouJia/54a5b224ac542a03beebf6701053269f/raw/config.local.ini",
+        legacy: true
       }
     ]
   },
