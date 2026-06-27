@@ -34,8 +34,7 @@
                 </el-form-item>
                 <el-form-item label="远程配置:">
                   <el-select v-model="form.remoteConfig" allow-create filterable placeholder="请选择" style="width: 100%" class="remote-config-select">
-                    <el-option-group v-for="group in options.remoteConfig" :key="group.label">
-                      <span slot="label" :class="group.label === 'hjsrules' ? 'hjsrules-group-label' : ''">{{ group.label }}</span>
+                    <el-option-group v-for="group in options.remoteConfig" :key="group.label" :label="group.label">
                       <el-option v-for="item in group.options" :key="item.value" :label="item.label"
                         :value="item.value"></el-option>
                     </el-option-group>
@@ -514,16 +513,18 @@ export default {
 </script>
 
 <style scoped>
-.remote-config-select ::v-deep .hjsrules-group-label {
-  display: inline-block;
-  padding: 2px 10px;
-  margin-left: -4px;
-  border-radius: 4px;
-  background: linear-gradient(90deg, #e8f0fe 0%, #fef7e0 100%);
+/* 仅突出 hjsrules 分组（首个分组），不影响 universal/customized 等标题 */
+.remote-config-select ::v-deep .el-select-group:first-child .el-select-group__title {
+  display: block;
+  margin: 4px 0 6px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: var(--card, #fff);
   color: #b06000;
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 0.04em;
   border: 1px solid #f9ab00;
+  box-shadow: 0 2px 8px rgba(249, 171, 0, 0.22);
 }
 </style>
