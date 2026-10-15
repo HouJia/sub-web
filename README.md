@@ -1,13 +1,15 @@
 # sub-web（HouJia）
 
+> 2026-10-15 分支改名：`hjsmaster` → `hubery/main`，`hjs-feature` → `hubery/dev`，本文已同步替换。上游分支只读；本仓库不保留自己的 main/master。
+
 ![Vue](https://img.shields.io/badge/Vue-2.6.x-brightgreen.svg)
 ![Node](https://img.shields.io/badge/Node-22.x-green.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)
 
-基于 Vue 2.6 + Vite 的订阅转换 **Web 前端**，对接自建 [HouJia/SubConverter-Extended](https://github.com/HouJia/SubConverter-Extended)（**SubConverter-Extended** 基线，`hjsmaster` 分支）。
+基于 Vue 2.6 + Vite 的订阅转换 **Web 前端**，对接自建 [HouJia/SubConverter-Extended](https://github.com/HouJia/SubConverter-Extended)（**SubConverter-Extended** 基线，`hubery/main` 分支）。
 
-> **默认分支**：`hjsmaster`（非 CareyWang 上游 `master`）。  
+> **默认分支**：`hubery/main`（非 CareyWang 上游 `master`）。  
 > **分支与迭代**：见 [docs/技术方案-分支与上游同步.md](docs/技术方案-分支与上游同步.md)。
 
 ## 相对 CareyWang/sub-web 的主要改动
@@ -46,7 +48,7 @@ cp .env.example .env
 ```bash
 git clone git@github.com:HouJia/sub-web.git
 cd sub-web
-git checkout hjsmaster
+git checkout hubery/main
 cp .env.default .env    # 或 .env.example（NAS 场景）
 yarn install
 yarn dev
